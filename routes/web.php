@@ -15,4 +15,4 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/mail', 'mailController@send');
+$router->post('/mail', 'mailController@send');

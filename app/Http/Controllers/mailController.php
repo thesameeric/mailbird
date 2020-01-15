@@ -21,16 +21,24 @@ class mailController extends Controller
     }
 
      /**
-     * Processes mail requests
+     * sends a mail
      *
      * @return void
      */
-    public function send()
+    public function send(Request $request)
     {
-        $objDemo = new \stdClass();
-        $objDemo->sender = 'DSCFUTA';
-        $objDemo->receiver = 'Okiti';
+        $rules = [
+            'recieverMail' => 'required|email',
+            'message' => 'required|min:5',
+        ];
+
+        $this->validate($request, $rules);
+
+        $mailObj = new \stdClass();
+        $mailObj->senderName = $request->input('senderName', 'DSCFUTA');
+        $mailObj->receiverName = $request->input('recieverName', 'User');
+        $mailObj->message = $request->input('message');
  
-        Mail::to("osivwiokiti@gmail.com")->send(new welcomeMail($objDemo));
+        Mail::to($request->recieverMail)->send(new welcomeMail($mailObj));
     }
 }

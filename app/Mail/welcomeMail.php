@@ -12,20 +12,20 @@ class welcomeMail extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * The demo object instance.
+     * The mail object instance.
      *
-     * @var Demo
+     * @var mailObj
      */
-    public $demo;
+    public $mailObj;
  
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($demo)
+    public function __construct($mailObj)
     {
-        $this->demo = $demo;
+        $this->mailObj = $mailObj;
     }
 
     /**
